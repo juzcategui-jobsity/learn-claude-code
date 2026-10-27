@@ -1,0 +1,177 @@
+
+===== s15_integrated_harness | 2026-10-27 08:18:30 =====
+$ python s15_integrated_harness/code.py 
+
+s15: integrated harness
+Enter a question, press Enter to send. Type q to quit.
+
+s15 >> Inspect this repository and tell me which Python files matter most
+[HOOK] UserPromptSubmit: C:\cursos\learn-claude-code
+> bash
+
+[permission] shell command
+  dir /s /b *.py 2>nul
+  Allow? [y/N] y
+[HOOK] bash
+C:\cursos\learn-claude-code\hello.py
+C:\cursos\learn-claude-code\record.py
+C:\cursos\learn-claude-code\test.py
+C:\cursos\learn-claude-code\.venv\Lib\site-packages\typing_extensions.py
+C:\cursos\learn-claude-code\.venv\Lib\site-packages\annotated_types\test_cases.py
+C:\cursos\learn-claude-code\.venv\
+> bash
+
+[permission] shell command
+  dir /a /b
+  Allow? [y/N] y
+[HOOK] bash
+-p
+.env
+.env.example
+.git
+.github
+.gitignore
+.mailboxes
+.memory
+.scheduled_tasks.json
+.tasks
+.venv
+agents
+CONTRIBUTING.md
+docs
+evidence
+evidence.lnk
+hello.py
+LICENSE
+README-ja.md
+README-zh.md
+README.md
+record.py
+requirements.txt
+s01_agent_loop
+s02_tool_use
+s03_permission
+s04_hooks
+s05_todo_write
+s06
+> bash
+
+[permission] shell command
+  for /d %d in (s01_agent_loop s02_tool_use s03_permission s04_hooks s05_todo_write s06_subagent s07_skill_loading s08_context_compact s09_memory s10_task_system s11_background_tasks s12_cron_scheduler s13_agent_teams s14_mcp_plugin s15_integrated_harness s16_workflow_runtime s17_goal_loop agents utils web tests skills) do @(echo === %d === & dir /b %d 2>nul)
+  Allow? [y/N] y
+[HOOK] bash
+=== s01_agent_loop === 
+code.py
+images
+README.ja.md
+README.md
+README.zh.md
+=== s02_tool_use === 
+code.py
+images
+README.ja.md
+README.md
+README.zh.md
+=== s03_permission === 
+code.py
+images
+README.ja.md
+README.md
+README.zh.md
+=== s04_hooks === 
+code.py
+images
+README.ja.md
+README.md
+README.zh.md
+=== s05
+> bash
+
+[permission] shell command
+  type hello.py & echo --- & type record.py & echo --- & type test.py
+  Allow? [y/N] y
+[HOOK] bash
+print("Hello, World!") 
+--- 
+"""
+Graba la sesion de una leccion en evidence/<leccion>.txt (salida + lo que escribes).
+
+Uso (desde la raiz del repo, con el venv activo):
+    python record.py s01
+    python record.py s16 demo        # argumentos extra se pasan a la leccion
+
+El log incluye fecha, coman
+> todo_write
+[HOOK] todo_write
+  [todo] updated 1 item(s)
+Updated 1 todos
+[HOOK] Stop: 5 tool result(s)
+Here's a map of the Python files that matter most in this repo:
+
+---
+
+### 🔑 Core Root Files
+| File | Purpose |
+|---|---|
+| `record.py` | **Most important utility** — records lesson sessions to `evidence/`. Handles Windows shims, stdin/stdout tee-ing, ANSI stripping, and `runpy` execution of any lesson. |
+| `hello.py` / `test.py` | Trivial sanity scripts (`print("Hello, World!")`, `print("hello")`). Not significant. |
+
+---
+
+### 📚 Lesson Code (`s01`–`s17`)
+Each folder has exactly one `code.py`. These are the **primary learning artifacts** — progressively building an AI agent system:
+
+| Lesson | Topic |
+|---|---|
+| `s01_agent_loop` | Basic agent loop |
+| `s02_tool_use` | Tool use |
+| `s03_permission` | Permission/command handling |
+| `s04_hooks` | Hooks |
+| `s05_todo_write` | Todo/task tracking |
+| `s06_subagent` | Subagents |
+| `s07_skill_loading` | Skill loading |
+| `s08_context_compact` | Context compaction |
+| `s09_memory` | Memory |
+| `s10_task_system` | Task system |
+| `s11_background_tasks` | Background tasks |
+| `s12_cron_scheduler` | Cron scheduling |
+| `s13_agent_teams` | Agent teams |
+| `s14_mcp_plugin` | MCP plugin integration |
+| `s15_integrated_harness` | Integrated test harness |
+| `s16_workflow_runtime` | Workflow runtime |
+| `s17_goal_loop` | Goal/autonomous loop |
+
+---
+
+### 🤖 `agents/` — Reusable Agent Implementations
+These are standalone agent scripts that mirror the lessons but are importable/reusable:
+- `s_full.py` — likely the **most complete agent** combining all features
+- `s09_agent_teams.py`, `s10_team_protocols.py`, `s11_autonomous_agents.py`, `s12_worktree_task_isolation.py` — advanced multi-agent patterns
+
+---
+
+### 🧪 `tests/` — Test Suite
+20 test files covering every major subsystem. Key ones:
+- `test_agents_smoke.py` — broad smoke test
+- `test_agent_teams_runtime.py`, `test_workflow_goal_lessons.py` — integration-level tests
+
+---
+
+### 🛠️ `utils/math_ops.py`
+A small utility module (used in tool-use lessons as an example tool).
+
+---
+
+**Bottom line:** `record.py` and the 17 `sXX/code.py` lesson files are the heart of this repo. The `agents/` folder (especially `s_full.py`) is the production-ready distillation, and `tests/` keeps it all honest.
+
+s15 >> Remind me about the meeting in 2 minutes
+[HOOK] UserPromptSubmit: C:\cursos\learn-claude-code
+> schedule_cron
+[HOOK] schedule_cron
+Scheduled cron_496926: '21 10 27 10 2' -> Remind the user: "⏰ Meeting reminder! Your meeting is now."
+[HOOK] Stop: 6 tool result(s)
+Done! I'll remind you about your meeting at **10:22 AM** (in 2 minutes). ⏰
+
+s15 >> q
+
+===== fin 10:21:14 =====

@@ -1,0 +1,70 @@
+
+===== s16_workflow_runtime | 2026-10-25 08:27:16 =====
+$ python s16_workflow_runtime/code.py demo
+
+launching workflow `review-changes`
+
+  event      async_launched     runId=wf_review-changes_a797aa99f00131a1 taskId=local_workflow_wf_review-changes_a797aa99f00131a1
+  event      task_started       workflow=review-changes phases=Review,Verify resume=False
+  progress   workflow_phase   title=Review
+  progress   workflow_agent   label=audit:correctness phase=Review status=done
+  progress   workflow_phase   title=Verify
+  progress   workflow_agent   label=audit:security phase=Review status=done
+  progress   workflow_agent   label=audit:performance phase=Review status=done
+  progress   workflow_agent   label=audit:style phase=Review status=done
+  progress   workflow_agent   label=verify:correctness:audit:correctness #1 phase=Verify status=done
+  progress   workflow_agent   label=verify:security:audit:security #1 phase=Verify status=done
+  progress   workflow_agent   label=verify:security:audit:security #2 phase=Verify status=done
+  progress   workflow_agent   label=verify:performance:audit:performance #1 phase=Verify status=done
+  progress   workflow_agent   label=verify:performance:audit:performance #2 phase=Verify status=done
+  progress   workflow_agent   label=verify:style:audit:style #1 phase=Verify status=done
+  progress   workflow_agent   label=verify:style:audit:style #2 phase=Verify status=done
+  progress   workflow_log     message=confirmed 6 real finding(s)
+  event      task_notification  status=completed agents=11 tokens=883 outputFile=.runtime/wf_review-changes_a797aa99f00131a1.output.json
+
+result:
+  [medium] performance: audit:performance #1
+  [medium] performance: audit:performance #2
+  [medium] style: audit:style #1
+  [medium] style: audit:style #2
+  [low   ] security: audit:security #1
+  [low   ] security: audit:security #2
+
+status=completed  agents=11  tokens=883  journal=.runtime/wf_review-changes_a797aa99f00131a1.journal.jsonl
+
+===== fin 08:27:18 =====
+
+===== s16_workflow_runtime | 2026-10-27 10:21:37 =====
+$ python s16_workflow_runtime/code.py demo
+
+launching workflow `review-changes`
+
+  event      async_launched     runId=wf_review-changes_d0fad84a994c275f taskId=local_workflow_wf_review-changes_d0fad84a994c275f
+  event      task_started       workflow=review-changes phases=Review,Verify resume=False
+  progress   workflow_phase   title=Review
+  progress   workflow_agent   label=audit:correctness phase=Review status=done
+  progress   workflow_phase   title=Verify
+  progress   workflow_agent   label=audit:security phase=Review status=done
+  progress   workflow_agent   label=audit:performance phase=Review status=done
+  progress   workflow_agent   label=audit:style phase=Review status=done
+  progress   workflow_agent   label=verify:correctness:audit:correctness #1 phase=Verify status=done
+  progress   workflow_agent   label=verify:security:audit:security #1 phase=Verify status=done
+  progress   workflow_agent   label=verify:security:audit:security #2 phase=Verify status=done
+  progress   workflow_agent   label=verify:performance:audit:performance #1 phase=Verify status=done
+  progress   workflow_agent   label=verify:performance:audit:performance #2 phase=Verify status=done
+  progress   workflow_agent   label=verify:style:audit:style #1 phase=Verify status=done
+  progress   workflow_agent   label=verify:style:audit:style #2 phase=Verify status=done
+  progress   workflow_log     message=confirmed 6 real finding(s)
+  event      task_notification  status=completed agents=11 tokens=883 outputFile=.runtime/wf_review-changes_d0fad84a994c275f.output.json
+
+result:
+  [medium] performance: audit:performance #1
+  [medium] performance: audit:performance #2
+  [medium] style: audit:style #1
+  [medium] style: audit:style #2
+  [low   ] security: audit:security #1
+  [low   ] security: audit:security #2
+
+status=completed  agents=11  tokens=883  journal=.runtime/wf_review-changes_d0fad84a994c275f.journal.jsonl
+
+===== fin 10:21:38 =====

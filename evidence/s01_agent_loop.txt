@@ -1,0 +1,24 @@
+
+===== s01_agent_loop | 2026-10-25 14:14:19 =====
+$ python s01_agent_loop/code.py 
+
+s01: Agent Loop
+Enter a question, press Enter to send. Type q to quit.
+
+s01 >> Create a file called hello.py that prints "Hello, World!" and run it
+$ echo print("Hello, World!") > hello.py
+(no output)
+$ python hello.py
+Hello, World!
+Done! Here's what happened:
+
+1. **Created `hello.py`** — A Python file containing `print("Hello, World!")`
+2. **Ran `hello.py`** — Python executed the file and output `Hello, World!`
+
+s01 >> q.
+$ exit
+(no output)
+Goodbye! 👋
+
+
+===== fin 14:19:57 =====

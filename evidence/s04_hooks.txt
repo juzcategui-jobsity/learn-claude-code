@@ -1,0 +1,86 @@
+
+===== s04_hooks | 2026-10-25 09:29:35 =====
+$ python s04_hooks/code.py 
+
+s04: Hooks - extension logic on hooks, loop stays clean
+Enter a question, press Enter to send. Type q to quit.
+
+s04 >> Read the file README.md
+[HOOK] UserPromptSubmit: working in C:\cursos\learn-claude-code
+[HOOK] read_file(['C:\\cursos\\learn-claude-code\\README.md'])
+[HOOK] Stop: session used 1 tool calls
+Here is a summary of the **README.md** for the `learn-claude-code` repository:
+
+---
+
+## 📘 Overview
+
+**"Learn Claude Code — Harness Engineering for Real Agents"** is a tutorial repository that teaches you how to build the **harness** (operational environment) for AI agents. The core philosophy is:
+
+> **Agency comes from the model (training), not the code. Your job is to build the vehicle, not the driver.**
+
+---
+
+## 🧠 Key Concepts
+
+- **Agent = Model + Harness**
+- The **model** (e.g., Claude) supplies intelligence.
+- The **harness** supplies: Tools, Knowledge, Observation, Action Interfaces, and Permissions.
+- The repo uses **Claude Code** as a reference implementation because it exemplifies a minimal, elegant harness.
+
+---
+
+## 📚 Course Structure — 17 Progressive Lessons
+
+| Stage | Lessons | Focus |
+|---|---|---|
+| 1 | s01–s04 | Core agent loop, tool use, permissions, hooks |
+| 2 | s05–s08 | Planning, subagents, context compaction |
+| 3 | s09 | Memory persistence |
+| 4 | s10–s12 | Task system, background tasks, cron scheduler |
+| 5 | s13 | Multi-agent teams |
+| 6 | s07, s14–s15 | Skill loading, MCP plugins, integrated harness |
+| 7 | s16–s17 | Workflow orchestration, goal-loop closure |
+
+---
+
+## ⚙️ Quick Start
+
+```sh
+git clone https://github.com/shareAI-lab/learn-claude-code
+cd learn-claude-code
+pip install -r requirements.txt
+cp .env.example .env   # Set your ANTHROPIC_API_KEY
+python s01_agent_loop/code.py
+```
+
+---
+
+## 🗂️ Project Structure
+
+Each chapter is a self-contained folder with:
+- `README.md` (English), `README.zh.md` (Chinese), `README.ja.md` (Japanese)
+- `code.py` — standalone runnable implementation
+- `images/` — SVG diagrams (where applicable)
+
+---
+
+## 🔗 Related Projects
+
+- **[Kode Agent CLI](https://github.com/shareAI-lab/Kode-CLI)** — Open-source coding agent CLI
+- **[Kode Agent SDK](https://github.com/shareAI-lab/kode-agent-sdk)** — Embeddable agent library
+- **[claw0](https://github.com/shareAI-lab/claw0)** — Always-on agent harness with heartbeat, cron, and IM channels
+
+---
+
+**License:** MIT
+
+s04 >> Create a file called test.txt
+[HOOK] UserPromptSubmit: working in C:\cursos\learn-claude-code
+[HOOK] write_file(['C:\\cursos\\learn-claude-code\\test.txt', ''])
+[HOOK] Stop: session used 2 tool calls
+The file `test.txt` has been created at `C:\cursos\learn-claude-code\test.txt`.
+
+s04 >> q
+
+===== fin 09:30:50 =====

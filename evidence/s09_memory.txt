@@ -1,0 +1,36 @@
+
+===== s09_memory | 2026-10-25 12:52:44 =====
+$ python s09_memory/code.py 
+
+s09: Memory - selective knowledge across sessions
+Enter a question, press Enter to send. Type q to quit.
+
+s09 >> I prefer using tabs for indentation. Remember that.
+[HOOK] UserPromptSubmit: working in C:\cursos\learn-claude-code
+[HOOK] Stop: session used 0 tool calls
+
+[Memory: stored 1 records]
+I'll remember that you prefer using tabs for indentation!
+
+**Preference saved:** Use tabs for indentation.
+
+I'll make sure to use tabs whenever I write or edit code for you. Let me know if there's anything else you'd like me to keep in mind!
+
+s09 >> q
+
+===== fin 09:56:48 =====
+
+===== s09_memory | 2026-10-27 09:57:00 =====
+$ python s09_memory/code.py 
+
+s09: Memory - selective knowledge across sessions
+Enter a question, press Enter to send. Type q to quit.
+
+s09 >> What indentation style do I prefer?
+[HOOK] UserPromptSubmit: working in C:\cursos\learn-claude-code
+[HOOK] Stop: session used 0 tool calls
+Based on my memory records, you prefer **tabs** over spaces for code indentation. This applies when writing or editing any code.
+
+s09 >> q
+
+===== fin 09:57:39 =====

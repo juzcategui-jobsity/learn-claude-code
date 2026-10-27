@@ -1,0 +1,25 @@
+
+===== s17_goal_loop | 2026-10-27 11:05:30 =====
+$ python s17_goal_loop/code.py 
+
+s17: goal loop
+Set a condition with /goal <condition>. Type q to quit.
+
+s17 >> /goal the file goal_done.txt exists and contains the word listo
+[hook] UserPromptSubmit: working in C:\cursos\learn-claude-code
+[hook] read_file(['goal_done.txt'])
+[hook] write_file(['goal_done.txt', 'listo'])
+[hook] read_file(['goal_done.txt'])
+[hook] Stop: session used 3 tool calls
+Done! ✅ The file **`goal_done.txt`** has been created and contains the word **`listo`**.
+[goal] achieved: The file goal_done.txt was created with write_file and subsequently read back, returning 'listo' as its content, confirming the completion condition is satisfied.
+
+s17 >> Create goal_done.txt with the word listo
+[hook] UserPromptSubmit: working in C:\cursos\learn-claude-code
+[hook] read_file(['goal_done.txt'])
+[hook] Stop: session used 4 tool calls
+✅ **`goal_done.txt`** already exists and contains the word **`listo`**. No action needed — the goal is already complete!
+
+s17 >> q
+
+===== fin 10:23:23 =====

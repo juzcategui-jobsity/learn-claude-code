@@ -1,0 +1,44 @@
+
+===== s12_cron_scheduler | 2026-10-26 10:07:08 =====
+$ python s12_cron_scheduler/code.py 
+
+s12: Cron Scheduler - run prompts on a local schedule
+Enter a question, press Enter to send. Type q to quit.
+
+s12 >> Schedule "echo hola desde cron" every 1 minute.
+[HOOK] UserPromptSubmit: working in C:\cursos\learn-claude-code
+[HOOK] schedule_cron(['* * * * *', 'echo hola desde cron'])
+  [cron] scheduled cron_f7eb26ab: * * * * * -> echo hola desde cron
+  [cron] due cron_f7eb26ab: echo hola desde cron
+[HOOK] Stop: session used 1 tool calls
+Done! ✅ The cron job has been scheduled with the following details:
+
+- **Job ID:** `cron_f7eb26ab`
+- **Schedule:** `* * * * *` (every 1 minute)
+- **Prompt:** `echo hola desde cron`
+- **Recurring:** Yes (will keep running every minute)
+
+To cancel it at any time, you can use the job ID `cron_f7eb26ab`. Let me know if you need anything else!
+
+s12 >> List all cron jobs
+[HOOK] UserPromptSubmit: working in C:\cursos\learn-claude-code
+[HOOK] list_crons([])
+[HOOK] Stop: session used 6 tool calls
+Here are all the currently scheduled cron jobs:
+
+| Job ID | Schedule | Prompt | Type |
+|---|---|---|---|
+| `cron_f7eb26ab` | `* * * * *` (every 1 min) | `echo hola desde cron` | Recurring, Durable |
+
+You have **1 active cron job** running. Let me know if you'd like to cancel it or add more!
+
+s12 >> Cancel the cron job you just created
+[HOOK] UserPromptSubmit: working in C:\cursos\learn-claude-code
+[HOOK] cancel_cron(['cron_f7eb26ab'])
+  [cron] cancelled cron_f7eb26ab
+[HOOK] Stop: session used 7 tool calls
+✅ Cron job **`cron_f7eb26ab`** has been successfully cancelled! The `echo hola desde cron` command will no longer run every minute. Let me know if you need anything else!
+
+s12 >> q
+
+===== fin 10:10:51 =====

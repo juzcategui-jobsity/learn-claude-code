@@ -1,0 +1,37 @@
+
+===== s02_tool_use | 2026-10-25 09:20:11 =====
+$ python s02_tool_use/code.py 
+
+s02: Tool Use - four tools added to s01
+Enter a question, press Enter to send. Type q to quit.
+
+s02 >> Read README.md and tell me in 3 lines what this project is about
+> read_file
+[English](./README.md) | [中文](./README-zh.md) | [日本語](./README-ja.md)
+
+<a href="https://trendshift.io/repositories/19746" target="_blank"><img src="https://trendshift.io/api/badge/repositories/19746" 
+Here's the project in 3 lines:
+
+**"Learn Claude Code"** is a hands-on course teaching **harness engineering** — the art of building the environment (tools, permissions, memory, task systems, and agent teams) that surrounds an AI model so it can operate effectively.
+
+It consists of **17 progressive lessons** (s01–s17), each isolating one harness mechanism — from a basic agent loop and tool use, all the way to multi-agent teams, workflow orchestration, and goal-controlled loops.
+
+The core philosophy is: **agency comes from the model (e.g., Claude), not from code** — your job as a developer is to build the "vehicle" (the harness), and the model will do the rest.
+
+s02 >> Create test.py that prints "hello", then read it back
+> write_file
+Wrote 15 bytes to C:\cursos\learn-claude-code\test.py
+> read_file
+print("hello")
+Done! `test.py` was created and contains exactly:
+
+```python
+print("hello")
+```
+
+s02 >> q.
+Sure! Let me know if you need anything else.
+
+s02 >> q
+
+===== fin 09:25:53 =====

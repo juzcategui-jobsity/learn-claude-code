@@ -1,0 +1,141 @@
+
+===== s08_context_compact | 2026-10-25 12:39:19 =====
+$ python s08_context_compact/code.py 
+
+s08: Context Compact - archive, reduce, then summarize
+Enter a question, press Enter to send. Type q to quit.
+
+s08 >> Read the README.md files from s01_agent_loop through s05_todo_write. Compare their top-level headings and summarize the naming pattern.
+> read_file
+[HOOK] read_file(['C:\\cursos\\learn-claude-code\\s01_agent_loop\\README.md'])
+# s01: The Agent Loop — One Loop Is All You Need
+
+[English](README.md) · [中文](README.zh.md) · [日本語](README.ja.md)
+
+`s01` → [s02](../s02_tool_use/) → s03 → s04 → ... → s16 → s17
+> *"One loop & Bash is 
+> read_file
+[HOOK] read_file(['C:\\cursos\\learn-claude-code\\s02_haiku\\README.md'])
+Error: [Errno 2] No such file or directory: 'C:\\cursos\\learn-claude-code\\s02_haiku\\README.md'
+> read_file
+[HOOK] read_file(['C:\\cursos\\learn-claude-code\\s03_debate\\README.md'])
+Error: [Errno 2] No such file or directory: 'C:\\cursos\\learn-claude-code\\s03_debate\\README.md'
+> read_file
+[HOOK] read_file(['C:\\cursos\\learn-claude-code\\s04_todo_read\\README.md'])
+Error: [Errno 2] No such file or directory: 'C:\\cursos\\learn-claude-code\\s04_todo_read\\README.md'
+> read_file
+[HOOK] read_file(['C:\\cursos\\learn-claude-code\\s05_todo_write\\README.md'])
+# s05: TodoWrite — An Agent Without a Plan Drifts Off Course
+
+[English](README.md) · [中文](README.zh.md) · [日本語](README.ja.md)
+
+s01 → s02 → s03 → s04 → `s05` → [s06](../s06_subagent/) → s07 → ... → s16
+> bash
+[HOOK] bash(['dir C:\\cursos\\learn-claude-code /b /ad'])
+.git
+.github
+.venv
+agents
+docs
+evidence
+s01_agent_loop
+s02_tool_use
+s03_permission
+s04_hooks
+s05_todo_write
+s06_subagent
+s07_skill_loading
+s08_context_compact
+s09_memory
+s10_task_system
+s11_background
+> read_file
+[HOOK] read_file(['C:\\cursos\\learn-claude-code\\s02_tool_use\\README.md', 5)
+# s02: Tool Use — Add a Tool, Add Just One Line
+
+[English](README.md) · [中文](README.zh.md) · [日本語](README.ja.md)
+
+s01 → `s02` → [s03](../s03_permission/) → s04 → ... → s16 → s17
+... (167 more lines)
+> read_file
+[HOOK] read_file(['C:\\cursos\\learn-claude-code\\s03_permission\\README.md',)
+# s03: Permission — Check Permissions Before Execution
+
+[English](README.md) · [中文](README.zh.md) · [日本語](README.ja.md)
+
+s01 → s02 → `s03` → [s04](../s04_hooks/) → s05 → ... → s16 → s17
+... (163 more 
+> read_file
+[HOOK] read_file(['C:\\cursos\\learn-claude-code\\s04_hooks\\README.md', 5])
+# s04: Hooks — Hang on the Loop, Don't Write into It
+
+[English](README.md) · [中文](README.zh.md) · [日本語](README.ja.md)
+
+s01 → s02 → s03 → `s04` → [s05](../s05_todo_write/) → s06 → ... → s16 → s17
+... (
+Here's the full comparison and naming pattern:
+
+---
+
+## Top-Level Headings
+
+| Folder | Heading |
+|---|---|
+| `s01_agent_loop` | `# s01: The Agent Loop — One Loop Is All You Need` |
+| `s02_tool_use` | `# s02: Tool Use — Add a Tool, Add Just One Line` |
+| `s03_permission` | `# s03: Permission — Check Permissions Before Execution` |
+| `s04_hooks` | `# s04: Hooks — Hang on the Loop, Don't Write into It` |
+| `s05_todo_write` | `# s05: TodoWrite — An Agent Without a Plan Drifts Off Course` |
+
+---
+
+## Naming Pattern
+
+Every top-level heading follows a consistent three-part structure:
+
+```
+# s{NN}: {Topic} — {Pithy Principle}
+```
+
+1. **`s{NN}:`** — A zero-padded two-digit section number that matches the folder prefix, acting as a stable identifier.
+2. **`{Topic}`** — A short PascalCase or Title Case name for the core concept introduced in that section (e.g., *The Agent Loop*, *Tool Use*, *Permission*, *Hooks*, *TodoWrite*). This also matches the folder's suffix.
+3. **`— {Pithy Principle}`** — A memorable, opinionated one-liner after an em-dash that captures *why* the concept matters (e.g., *"One Loop Is All You Need"*, *"Add a Tool, Add Just One Line"*).
+
+In short: **number → concept name → memorable motto**, making each heading both navigable (by number) and self-explanatory (by the motto) at a glance.
+
+s08 >> Now summarize s06_subagent/README.md
+> read_file
+[HOOK] read_file(['C:\\cursos\\learn-claude-code\\s06_subagent\\README.md'])
+# s06: Subagent — Give a Subtask Its Own Context
+
+[English](README.md) · [中文](README.zh.md) · [日本語](README.ja.md)
+
+s01 → s02 → s03 → s04 → s05 → `s06` → [s07](../s07_skill_loading/) → s08 → ... → s16 
+## s06: Subagent — Give a Subtask Its Own Context
+
+### The Problem
+When an agent works on a complex task (e.g., tracing a bug through many files), every intermediate tool call and result accumulates in `messages[]`, bloating the context with details that are no longer needed once the sub-task is done.
+
+### The Solution
+Introduce a `task` tool that spins up a **nested agent loop** with a **fresh `messages[]`**. The subagent does its work independently, and only its final text is returned to the parent — all intermediate steps stay isolated and never pollute the parent's context.
+
+### Key Design Decisions
+| Aspect | Choice |
+|---|---|
+| Conversation | Fresh `messages[]` — parent history not shared |
+| Execution | Same Python process and `WORKDIR` — filesystem is shared |
+| Return value | Final text only — child tool calls never enter parent messages |
+| Delegation depth | No `task` tool in subagent — only one level of nesting |
+| Permissions | Shared hooks — same checks apply to both parent and subagent |
+
+### How It Works
+- `run_subagent(prompt)` builds its own `messages` list, runs its own loop (capped at 30 turns), and returns the last text block.
+- The parent registers `task` alongside its base tools via the same `TOOL_HANDLERS` dispatch map — no special wiring needed.
+- The subagent gets the 5 base tools (`bash`, `read_file`, `write_file`, `edit_file`, `glob`) but **not** `task`, preventing recursive delegation.
+
+### One-Line Insight
+> *"Message isolation, not process isolation"* — the subagent cleans up context noise while still sharing the real workspace.
+
+s08 >> q
+
+===== fin 09:40:31 =====

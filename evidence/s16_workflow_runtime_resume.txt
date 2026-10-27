@@ -1,0 +1,35 @@
+
+===== s16_workflow_runtime | 2026-10-27 10:21:53 =====
+$ python s16_workflow_runtime/code.py resume
+
+resuming wf_review-changes_d0fad84a994c275f; unchanged agent() calls use the journal cache
+
+  event      async_launched     runId=wf_review-changes_d0fad84a994c275f taskId=local_workflow_wf_review-changes_d0fad84a994c275f
+  event      task_started       workflow=review-changes phases=Review,Verify resume=True
+  progress   workflow_phase   title=Review
+  progress   workflow_agent   label=audit:correctness phase=Review status=cached
+  progress   workflow_phase   title=Verify
+  progress   workflow_agent   label=audit:security phase=Review status=cached
+  progress   workflow_agent   label=audit:performance phase=Review status=cached
+  progress   workflow_agent   label=audit:style phase=Review status=cached
+  progress   workflow_agent   label=verify:correctness:audit:correctness #1 phase=Verify status=cached
+  progress   workflow_agent   label=verify:security:audit:security #1 phase=Verify status=cached
+  progress   workflow_agent   label=verify:security:audit:security #2 phase=Verify status=cached
+  progress   workflow_agent   label=verify:performance:audit:performance #1 phase=Verify status=cached
+  progress   workflow_agent   label=verify:performance:audit:performance #2 phase=Verify status=cached
+  progress   workflow_agent   label=verify:style:audit:style #1 phase=Verify status=cached
+  progress   workflow_agent   label=verify:style:audit:style #2 phase=Verify status=cached
+  progress   workflow_log     message=confirmed 6 real finding(s)
+  event      task_notification  status=completed agents=0 tokens=0 outputFile=.runtime/wf_review-changes_d0fad84a994c275f.output.json
+
+result:
+  [medium] performance: audit:performance #1
+  [medium] performance: audit:performance #2
+  [medium] style: audit:style #1
+  [medium] style: audit:style #2
+  [low   ] security: audit:security #1
+  [low   ] security: audit:security #2
+
+status=completed  agents=0  tokens=0  journal=.runtime/wf_review-changes_d0fad84a994c275f.journal.jsonl
+
+===== fin 10:21:53 =====

@@ -1,0 +1,76 @@
+
+===== s07_skill_loading | 2026-10-25 12:35:24 =====
+$ python s07_skill_loading/code.py 
+
+s07: Skill Loading - catalog first, full content on demand
+Enter a question, press Enter to send. Type q to quit.
+
+s07 >> What skills are available?
+[HOOK] UserPromptSubmit: working in C:\cursos\learn-claude-code
+[HOOK] Stop: session used 0 tool calls
+Based on the skills listed in my system configuration, here are the available skills:
+
+| Skill | Description | Use When |
+|-------|-------------|----------|
+| 🤖 **agent-builder** | Design and build AI agents for any domain | You want to create an agent, build an assistant, design an AI system, or learn about agent architecture, agentic patterns, orchestration, tool use, etc. |
+| 🔍 **code-review** | Perform thorough code reviews with security, performance, and maintainability analysis | You want to review code, check for bugs, or audit a codebase |
+| 🔌 **mcp-builder** | Build MCP (Model Context Protocol) servers that give Claude new capabilities | You want to create an MCP server, add tools to Claude, or integrate external services |
+| 📄 **pdf** | Process PDF files – extract text, create PDFs, merge documents | You need to read a PDF, create a PDF, or work with PDF files |
+
+Would you like to use any of these skills? Just let me know what you'd like to accomplish!
+
+s07 >> Load the code-review skill and review s01_agent_loop/code.py briefly
+[HOOK] UserPromptSubmit: working in C:\cursos\learn-claude-code
+[HOOK] load_skill(['code-review'])
+[HOOK] read_file(['s01_agent_loop/code.py'])
+[HOOK] Stop: session used 2 tool calls
+## Code Review: `s01_agent_loop/code.py`
+
+### Summary
+A clean, minimal agent loop implementation that feeds bash tool results back to an LLM until it stops calling tools. Well-structured educational code, but has a few security and robustness concerns worth noting.
+
+---
+
+### Critical Issues
+
+1. **Weak command blocklist** (line ~57): The `dangerous` list is trivially bypassed.
+   - Impact: `rm -rf /tmp/../` or `sudo -i` or `shutdown -h now` all slip through.
+   - Fix: Use an allowlist approach or at minimum use regex with word boundaries; consider sandboxing (Docker, `firejail`).
+
+2. **`shell=True` with unsanitized input** (line ~62): `subprocess.run(..., shell=True)` passes the raw user/LLM-generated command string to `cmd.exe`/`sh`.
+   - Impact: Shell metacharacter injection (e.g., `&&`, `|`, `;`) can chain arbitrary commands.
+   - Fix: For a teaching tool this is acceptable, but production code should avoid `shell=True` or sanitize thoroughly.
+
+---
+
+### Improvements
+
+1. **No conversation length / token limit** (line ~74): `history` grows unboundedly across sessions.
+   - Fix: Truncate or summarize old messages to avoid hitting context window limits silently.
+
+2. **`MODEL_ID` crashes without a clear error** (line ~40): `os.environ["MODEL_ID"]` raises a raw `KeyError` if unset.
+   - Fix: Use `os.environ.get("MODEL_ID")` with a descriptive error message or a sensible default.
+
+3. **Output truncated silently** (line ~65): `out[:50000]` cuts output with no indication to the model.
+   - Fix: Append `"\n[output truncated]"` so the LLM knows the result is incomplete.
+
+4. **`readline` bindings are macOS-specific comments** (line ~33): The comment says "macOS libedit" but the code runs unconditionally on all platforms.
+   - Fix: Guard with `sys.platform == "darwin"` if the fix is Mac-specific.
+
+---
+
+### Positive Notes
+- ✅ The agent loop pattern itself is textbook-clean and easy to follow — great for teaching.
+- ✅ Cross-platform awareness (`os.name == "nt"` for Windows) is well handled.
+- ✅ Timeout on subprocess prevents indefinite hangs.
+- ✅ `errors="replace"` avoids encoding crashes on binary output.
+- ✅ ANSI color codes use `\001/\002` readline width markers — a nice touch.
+
+---
+
+### Verdict
+- [x] **Needs minor changes** — solid educational code; the blocklist and `shell=True` issues should be documented with clear warnings since learners may copy this pattern into production.
+
+s07 >> q
+
+===== fin 09:36:57 =====

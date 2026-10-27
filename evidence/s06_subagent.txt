@@ -1,0 +1,83 @@
+
+===== s06_subagent | 2026-10-25 12:33:38 =====
+$ python s06_subagent/code.py 
+
+s06: Subagent - fresh messages, final text returns
+Enter a question, press Enter to send. Type q to quit.
+
+s06 >> Use a subtask to find what testing framework this project uses
+[HOOK] UserPromptSubmit: working in C:\cursos\learn-claude-code
+[HOOK] task(['Look at the project files in C:\\cursos\\learn-claude-code)
+
+[Subagent started]
+[HOOK] read_file(['C:\\cursos\\learn-claude-code\\package.json'])
+  [sub] read_file: Error: [Errno 2] No such file or directory: 'C:\\cursos\\learn-claude-code\\package.json'
+[HOOK] glob(['C:\\cursos\\learn-claude-code\\**\\*.test.*'])
+  [sub] glob: (no matches)
+[HOOK] glob(['C:\\cursos\\learn-claude-code\\**\\*.spec.*'])
+  [sub] glob: (no matches)
+[HOOK] glob(['C:\\cursos\\learn-claude-code\\**\\jest.config.*'])
+  [sub] glob: (no matches)
+[HOOK] bash(['dir C:\\cursos\\learn-claude-code /s /b'])
+  [sub] bash: C:\cursos\learn-claude-code\.env
+C:\cursos\learn-claude-code\.env.example
+C:\cursos\learn-claude-cod
+[HOOK] read_file(['C:\\cursos\\learn-claude-code\\requirements.txt'])
+  [sub] read_file: anthropic>=0.25.0
+python-dotenv>=1.0.0
+pyyaml>=6.0
+[HOOK] read_file(['C:\\cursos\\learn-claude-code\\test.py'])
+  [sub] read_file: print("hello")
+[HOOK] read_file(['C:\\cursos\\learn-claude-code\\.github\\workflows\\test.ym)
+  [sub] read_file: name: Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  python-sm
+[HOOK] read_file(['C:\\cursos\\learn-claude-code\\.github\\workflows\\ci.yml')
+  [sub] read_file: name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    
+[HOOK] bash(['dir C:\\cursos\\learn-claude-code\\tests /b'])
+  [sub] bash: test_agents_smoke.py
+test_agent_loop_boundaries.py
+test_agent_teams_runtime.py
+test_background_tasks
+[HOOK] read_file(['C:\\cursos\\learn-claude-code\\tests\\test_agents_smoke.py)
+  [sub] read_file: from __future__ import annotations
+
+from pathlib import Path
+import py_compile
+
+import pytest
+
+
+ROOT
+[HOOK] Stop: session used 11 tool calls
+[Subagent done]
+[HOOK] Stop: session used 1 tool calls
+The project uses **pytest** as its testing framework. Here's a quick summary of the findings:
+
+- **Framework**: `pytest` (Python)
+- **Test files**: 20 test files in the `tests/` directory, all following the `test_*.py` naming convention
+- **CI/CD**: The `.github/workflows/test.yml` workflow installs pytest via `pip install -r requirements.txt pytest` and runs tests with `python -m pytest tests -q`
+- **Test patterns**: Test files use standard pytest features like `@pytest.mark.parametrize` decorators
+
+> **Note**: There is also a `web/` subdirectory with a Node.js/TypeScript project, but it has **no JavaScript testing framework** configured — it only runs type-checking (`tsc`) and builds.
+
+s06 >> q
+
+===== fin 09:34:31 =====

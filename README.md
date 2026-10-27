@@ -454,3 +454,8 @@ MIT
 **Bash is all you need. Real agents are all the universe needs.**
 
 **This is not "copy the source code." This is "grasp the key designs and build it yourself."**
+
+## Evidencia del curso
+La salida de terminal de cada lección está en `evidence/`.
+Nota: la versión actual del repositorio tiene 17 lecciones (s01–s17); la consigna menciona s01–s19.
+#nota adicional : `record.py` graba cada sesión y adapta s13/s16 para que corran en Windows.
